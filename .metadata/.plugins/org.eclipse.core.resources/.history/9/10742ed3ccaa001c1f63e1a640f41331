@@ -1,0 +1,5 @@
+package com.revature.project.pctc.utilities;
+
+public class ConnUtil {
+
+}
