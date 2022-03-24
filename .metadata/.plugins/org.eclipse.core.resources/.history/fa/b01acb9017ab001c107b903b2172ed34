@@ -1,0 +1,44 @@
+package com.revature.project.pctc.app;
+
+import com.revature.project.pctc.handlers.AccountController;
+import com.revature.project.pctc.handlers.ClientController;
+
+import io.javalin.Javalin;
+
+public class Main {
+	public static void main(String[] args) {
+		Javalin app = Javalin.create().start();
+	
+		//This adds a client in the database.
+		//http://localhost:8080/clients
+		app.post("/clients", ClientController.addClient);
+		
+		//This retrieves the full list of clients in the database.
+		//http://localhost:8080/clients
+		app.get("/clients", ClientController.getClients);
+		
+		//This retrieve a client by their id in the database.
+		//returns a 404 when there is not a valid client.
+		//http://localhost:8080/clients/1
+		app.get("/clients/{id}", ClientController.getClientById);
+	
+		//This updates a specific client based on their id in the database.
+		//Returns 404 if no client exists.
+		//http://localhost:8080/clients/1
+		app.put("/clients/{id}", ClientController.updateClient);
+	
+		//This updates a specific client based on their id in the database.
+		//Returns 404 if no client exists.
+		app.delete("/clients/{id}", ClientController.deleteClient);
+
+		
+		app.post("/clients/{cId}/accounts", AccountController.addAccount);
+		
+		//Get all of the accounts for a specific client.
+		//returns a 404 if the client does not exist.
+		//http://localhost:8080/clients/1/accounts
+		app.get("/clients/{id}/accounts", AccountController.getAccounts);
+		
+		
+	}
+}

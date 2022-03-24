@@ -89,8 +89,9 @@ public class ClientController {
 		PreparedStatement ptsmt = conn.prepareStatement("delete from client where id = ?");
 		ptsmt.setInt(1, p);
 		ptsmt.execute();
-		ctx.status(200);
-		
-};
+		ctx.status(205);
+		ptsmt.close();	
+	};
+	
 }
 

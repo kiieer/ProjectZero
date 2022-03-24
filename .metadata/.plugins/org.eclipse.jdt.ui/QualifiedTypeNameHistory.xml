@@ -3,12 +3,14 @@
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
     <fullyQualifiedTypeName name="io.javalin.Javalin"/>
+    <fullyQualifiedTypeName name="com.revature.project.pctc.structures.Client"/>
+    <fullyQualifiedTypeName name="com.revature.project.pctc.handlers.ClientController"/>
+    <fullyQualifiedTypeName name="com.revature.project.pctc.handlers.AccountController"/>
     <fullyQualifiedTypeName name="io.javalin.http.Handler"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.utilities.ConnUtil"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="com.revature.project.pctc.structures.Client"/>
-    <fullyQualifiedTypeName name="com.revature.project.pctc.handlers.ClientController"/>
+    <fullyQualifiedTypeName name="com.revature.project.pctc.structures.Account"/>
 </qualifiedTypeNameHistroy>

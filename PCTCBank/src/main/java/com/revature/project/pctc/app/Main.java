@@ -1,5 +1,6 @@
 package com.revature.project.pctc.app;
 
+import com.revature.project.pctc.handlers.AccountController;
 import com.revature.project.pctc.handlers.ClientController;
 
 import io.javalin.Javalin;
@@ -30,5 +31,15 @@ public class Main {
 		//Returns 404 if no client exists.
 		app.delete("/clients/{id}", ClientController.deleteClient);
 
+		
+		/*
+		 * app.post("/clients/{client_id}/accounts", AccountController.addAccount);
+		 */		
+		//Get all of the accounts for a specific client.
+		//returns a 404 if the client does not exist.
+		//http://localhost:8080/clients/1/accounts
+		app.get("/clients/{id}/accounts", AccountController.getAccounts);
+		
+		
 	}
 }
