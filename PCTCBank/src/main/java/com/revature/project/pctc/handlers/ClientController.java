@@ -83,6 +83,7 @@ public class ClientController {
 		ptsmt.close();
 	};
 	
+	//This deletes a client in my database.
 	public static Handler deleteClient = ctx ->{
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Connection conn = ConnUtil.createConnection();
