@@ -28,7 +28,11 @@ public class AccountController {
 			a = new Account(id, accNum, bal, cId);
 			aList.add(a);
 		}
-
+		
+		if(aList.size() == 0) {
+			ctx.status(404);
+		}
+		
 		ctx.json(aList);
 		rs.close();
 		ptsmt.close();
