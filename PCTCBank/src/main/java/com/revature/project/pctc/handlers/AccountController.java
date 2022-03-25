@@ -53,6 +53,31 @@ public class AccountController {
 		ptsmt.close();
 	};
 	 
+	//Filter accounts by two balance variables.
+	public static Handler accountFilter = ctx -> {
+		String query = "select * from account where account_balance <? and account_balance>?";
+		int less = Integer.parseInt(ctx.queryParam("less"));
+		  int more = Integer.parseInt(ctx.queryParam("more"));
+		Connection conn = ConnUtil.createConnection();
+		PreparedStatement ptsmt = conn.prepareStatement(query);
+		ptsmt.setInt(1, less);
+		ptsmt.setInt(2, more);
+		ResultSet rs = ptsmt.executeQuery();
+		ArrayList<Account> aList = new ArrayList<Account>();
+		Account a;
+		while(rs.next()) {
+			int id = rs.getInt("id");
+			String accNum = rs.getString("account_number");
+			int bal = rs.getInt("account_balance");
+			int cId = rs.getInt("client_id");
+			a = new Account(id, accNum, bal, cId);
+			aList.add(a);
+		}
+		ctx.json(aList);
+		rs.close();
+		ptsmt.close();
+	};
+	
 	//get account by ID
 	public static Handler getAccountById = ctx -> {
 		int p = Integer.parseInt(ctx.pathParam("id"));
@@ -106,6 +131,7 @@ public class AccountController {
 		ptsmt.close();	
 	};
 	
+	// Deposit an amount into an existing account.
 	public static Handler depositIntoAccount = ctx ->{
 		String getBalance = "select account_balance from account where id = ?";
 		String updateBalance = "update account set account_balance= ? where id = ?";
@@ -124,6 +150,34 @@ public class AccountController {
 			ptsmt.setInt(2, p);
 			ptsmt.execute();
 			ctx.status(200);
+		}
+		rs.close();
+		ptsmt.close();
+	};
+	
+	//Withdraw from an amount from an existing account.
+	public static Handler withdrawFromAccount = ctx ->{
+		String getBalance = "select account_balance from account where id = ?";
+		String updateBalance = "update account set account_balance= ? where id = ?";
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		Account withdraw = ctx.bodyAsClass(Account.class);
+		Connection conn = ConnUtil.createConnection();
+		PreparedStatement ptsmt = conn.prepareStatement(getBalance);
+		ptsmt.setInt(1, p);
+		ResultSet rs = ptsmt.executeQuery();
+		int newBal;
+		while (rs.next()) {
+			int currentBal = rs.getInt("account_balance");
+			newBal = currentBal - withdraw.getBal();
+			if (newBal <= 0) {
+				ctx.status(422);
+			} else {
+			ptsmt = conn.prepareStatement(updateBalance);
+			ptsmt.setInt(1, newBal);
+			ptsmt.setInt(2, p);
+			ptsmt.execute();
+			ctx.status(200);
+			}
 		}
 		rs.close();
 		ptsmt.close();

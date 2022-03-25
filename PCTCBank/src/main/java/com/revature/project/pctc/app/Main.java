@@ -48,12 +48,21 @@ public class Main {
 		//This updates a specific account based on their id in the database.
 		//http://localhost:8080/accounts/1
 		app.put("/accounts/{id}", AccountController.updateAccount);
+		
+		//"Greater than, less than": filter through account balances through two parameters.
+		app.get("/accounts", AccountController.accountFilter);
 
-		// This deletes a specific account based on their id in the database.
-		// http://localhost:8080/accounts/1
+		//This deletes a specific account based on their id in the database.
+		//http://localhost:8080/accounts/1
 		app.delete("/accounts/{id}", AccountController.deleteAccount);
 		
+		//Deposit an amount into an existing account in our database.
+		//http://localhost:8080/accounts/1/deposit
 		app.patch("/accounts/{id}/deposit", AccountController.depositIntoAccount);
 		
+		//Withdraw an amount from an existing account in our database.
+		//http://localhost:8080/accounts/1/withdraw
+		app.patch("/accounts/{id}/withdraw", AccountController.withdrawFromAccount);
+
 	}
 }

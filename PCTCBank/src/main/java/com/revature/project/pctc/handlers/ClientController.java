@@ -12,6 +12,7 @@ import io.javalin.http.Handler;
 
 public class ClientController {
 	
+	//Add a client to the database.
 	public static Handler addClient = ctx -> {
 		Client client = ctx.bodyAsClass(Client.class);
 		Connection conn = ConnUtil.createConnection();
