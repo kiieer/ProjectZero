@@ -82,6 +82,7 @@ public class AccountController {
 		ptsmt.close();
 	};
 	
+	//This updates the acc number of a bank account with a specific ID in my database.
 	public static Handler updateAccount = ctx -> {
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Account a = ctx.bodyAsClass(Account.class);
@@ -92,5 +93,16 @@ public class AccountController {
 		ptsmt.execute();
 		ctx.status(200);
 		ptsmt.close();
+	};
+	
+	//This deletes an account in my database.
+	public static Handler deleteAccount = ctx ->{
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		Connection conn = ConnUtil.createConnection();
+		PreparedStatement ptsmt = conn.prepareStatement("delete from account where id = ?");
+		ptsmt.setInt(1, p);
+		ptsmt.execute();
+		ctx.status(205);
+		ptsmt.close();	
 	};
 }

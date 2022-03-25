@@ -27,7 +27,7 @@ public class Main {
 		//http://localhost:8080/clients/1
 		app.put("/clients/{id}", ClientController.updateClient);
 	
-		//This updates a specific client based on their id in the database.
+		//This deletes a specific client based on their id in the database.
 		//Returns 404 if no client exists.
 		app.delete("/clients/{id}", ClientController.deleteClient);
 
@@ -35,7 +35,6 @@ public class Main {
 		//returns a 404 if the client does not exist.
 		//http://localhost:8080/clients/1/accounts
 		app.get("/clients/{id}/accounts", AccountController.getAccounts);
-		
 		
 		//Adds an account for a specific client.
 		// http://localhost:8080/clients/1/accounts
@@ -47,8 +46,12 @@ public class Main {
 		app.get("/accounts/{id}", AccountController.getAccountById);
 		
 		//This updates a specific account based on their id in the database.
-		//http://localhost:8080/clients/1
+		//http://localhost:8080/accounts/1
 		app.put("/accounts/{id}", AccountController.updateAccount);
+
+		// This deletes a specific account based on their id in the database.
+		// http://localhost:8080/accounts/1
+		app.delete("/accounts/{id}", AccountController.deleteAccount);
 		
 	}
 }
