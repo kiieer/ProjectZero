@@ -1,0 +1,15 @@
+package com.revature.project.pctc.dao;
+
+import java.util.List;
+
+import com.revature.project.pctc.structures.Client;
+
+public class ClientPostgresDAO implements ClientDAO {
+
+	@Override
+	public List<Client> getClients() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
