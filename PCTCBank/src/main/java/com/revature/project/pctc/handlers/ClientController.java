@@ -50,14 +50,12 @@ public class ClientController {
 	//This retrieves updates the name of a client with a specific ID in my database.
 	public static Handler updateClient = ctx -> {
 		int p = Integer.parseInt(ctx.pathParam("id"));
-		Client c = ctx.bodyAsClass(Client.class);
-		Connection conn = ConnUtil.createConnection();
-		PreparedStatement ptsmt = conn.prepareStatement("update client set full_name = ? where id = ?");
-		ptsmt.setString(1, c.getName());
-		ptsmt.setInt(2, p);
-		ptsmt.execute();
-		ctx.status(200);
-		ptsmt.close();
+		Client client = ctx.bodyAsClass(Client.class);
+		if (dao.updateClient(client, p)) {
+			ctx.status(201);
+		} else {
+			ctx.status(404);
+		}
 	};
 	
 	//This deletes a client in my database.

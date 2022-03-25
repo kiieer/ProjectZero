@@ -78,7 +78,25 @@ public class ClientPostgresDAO implements ClientDAO {
 	}
 
 	@Override
-	public boolean deleteClient(Client client) {
+	public boolean updateClient(Client client, int p) {
+		// TODO Auto-generated method stub
+		Connection conn = ConnUtil.createConnection();
+		try {
+			PreparedStatement ptsmt = conn.prepareStatement("update client set full_name = ? where id = ?");
+			ptsmt.setString(1, client.getName());
+			ptsmt.setInt(2, p);
+			ptsmt.execute();
+			ptsmt.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deleteClient(int p) {
 		// TODO Auto-generated method stub
 		return false;
 	}

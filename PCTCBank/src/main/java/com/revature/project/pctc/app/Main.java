@@ -25,13 +25,13 @@ public class Main {
 			//returns a 404 when there is not a valid client.
 			//http://localhost:8080/clients/1
 			app.get("/clients/{id}", ClientController.getClientById);
-		
-		/* Incomplete */
-
+			
 			//This updates a specific client based on their id in the database.
 			//Returns 404 if no client exists.
 			//http://localhost:8080/clients/1
 			app.put("/clients/{id}", ClientController.updateClient);
+		
+		/* Incomplete */
 		
 			//This deletes a specific client based on their id in the database.
 			//Returns 404 if no client exists.
