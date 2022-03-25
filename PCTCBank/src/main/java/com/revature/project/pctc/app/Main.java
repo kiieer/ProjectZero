@@ -46,5 +46,9 @@ public class Main {
 		//http://localhost:8080/accounts/1
 		app.get("/accounts/{id}", AccountController.getAccountById);
 		
+		//This updates a specific account based on their id in the database.
+		//http://localhost:8080/clients/1
+		app.put("/accounts/{id}", AccountController.updateAccount);
+		
 	}
 }

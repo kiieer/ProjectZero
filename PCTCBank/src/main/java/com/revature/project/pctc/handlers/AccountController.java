@@ -81,4 +81,16 @@ public class AccountController {
 		rs.close();
 		ptsmt.close();
 	};
+	
+	public static Handler updateAccount = ctx -> {
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		Account a = ctx.bodyAsClass(Account.class);
+		Connection conn = ConnUtil.createConnection();
+		PreparedStatement ptsmt = conn.prepareStatement("update account set account_number = ? where id = ?");
+		ptsmt.setString(1, a.getAccNum());
+		ptsmt.setInt(2, p);
+		ptsmt.execute();
+		ctx.status(200);
+		ptsmt.close();
+	};
 }
