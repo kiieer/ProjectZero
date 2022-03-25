@@ -40,7 +40,11 @@ public class Main {
 		//Adds an account for a specific client.
 		// http://localhost:8080/clients/1/accounts
 		app.post("/clients/{id}/accounts", AccountController.addAccount);
-		 		
+		
+		//Get account by id.
+		//Returns 404 if the account isn't valid.
+		//http://localhost:8080/accounts/1
+		app.get("/accounts/{id}", AccountController.getAccountById);
 		
 	}
 }
