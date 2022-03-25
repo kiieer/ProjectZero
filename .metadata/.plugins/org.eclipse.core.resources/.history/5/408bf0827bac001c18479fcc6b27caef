@@ -19,5 +19,4 @@ public interface ClientDAO {
 	// UPDATE
 	
 	// DELETE
-	boolean deleteClient(Client client);
 }

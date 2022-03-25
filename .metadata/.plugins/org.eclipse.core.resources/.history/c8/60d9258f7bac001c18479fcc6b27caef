@@ -77,10 +77,4 @@ public class ClientPostgresDAO implements ClientDAO {
 		}
 	}
 
-	@Override
-	public boolean deleteClient(Client client) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
