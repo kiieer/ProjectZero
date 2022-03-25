@@ -10,12 +10,6 @@ public class Account {
 		super();
 	}
 	
-	public Account(int bal) {
-		super();
-		this.bal = bal;
-	}
-
-
 	public Account(int id, String accNum, int bal, int cId) {
 		super();
 		this.id = id;
