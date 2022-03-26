@@ -1,15 +1,10 @@
 package com.revature.project.pctc.handlers;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.project.pctc.dao.ClientDAO;
 import com.revature.project.pctc.dao.ClientPostgresDAO;
 import com.revature.project.pctc.structures.Client;
-import com.revature.project.pctc.utilities.ConnUtil;
 
 import io.javalin.http.Handler;
 
@@ -48,6 +43,7 @@ public class ClientController {
 	};
 	
 	//This retrieves updates the name of a client with a specific ID in my database.
+	//THIS DOESN'T WORK WHEN TRYING TO GET IT TO THROW THE 404 EXCEPTION.
 	public static Handler updateClient = ctx -> {
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Client client = ctx.bodyAsClass(Client.class);
@@ -61,12 +57,11 @@ public class ClientController {
 	//This deletes a client in my database.
 	public static Handler deleteClient = ctx ->{
 		int p = Integer.parseInt(ctx.pathParam("id"));
-		Connection conn = ConnUtil.createConnection();
-		PreparedStatement ptsmt = conn.prepareStatement("delete from client where id = ?");
-		ptsmt.setInt(1, p);
-		ptsmt.execute();
-		ctx.status(205);
-		ptsmt.close();	
+		if (dao.deleteClient(p)) {
+			ctx.status(205);
+		} else {
+			ctx.status(404);
+		}
 	};
 	
 }

@@ -98,7 +98,19 @@ public class ClientPostgresDAO implements ClientDAO {
 	@Override
 	public boolean deleteClient(int p) {
 		// TODO Auto-generated method stub
-		return false;
+		Connection conn = ConnUtil.createConnection();
+		PreparedStatement ptsmt;
+		try {
+			ptsmt = conn.prepareStatement("delete from client where id = ?");
+			ptsmt.setInt(1, p);
+			ptsmt.execute();
+			ptsmt.close();	
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

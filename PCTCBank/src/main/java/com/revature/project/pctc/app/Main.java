@@ -30,12 +30,12 @@ public class Main {
 			//Returns 404 if no client exists.
 			//http://localhost:8080/clients/1
 			app.put("/clients/{id}", ClientController.updateClient);
-		
-		/* Incomplete */
-		
+			
 			//This deletes a specific client based on their id in the database.
 			//Returns 404 if no client exists.
 			app.delete("/clients/{id}", ClientController.deleteClient);
+		
+		/* Incomplete */
 	
 			//Get all of the accounts for a specific client.
 			//returns a 404 if the client does not exist.
