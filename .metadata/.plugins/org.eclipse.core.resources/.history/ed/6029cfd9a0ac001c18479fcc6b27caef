@@ -1,0 +1,15 @@
+package com.revature.project.pctc.dao;
+
+import java.util.List;
+
+import com.revature.project.pctc.structures.Account;
+
+public class AccountPostgresDAO implements AccountDAO {
+
+	@Override
+	public List<Account> getAccounts(int p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

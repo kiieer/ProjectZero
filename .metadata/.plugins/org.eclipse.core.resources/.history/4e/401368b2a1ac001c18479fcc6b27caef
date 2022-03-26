@@ -1,0 +1,19 @@
+package com.revature.project.pctc.dao;
+
+import java.util.List;
+
+import com.revature.project.pctc.structures.Account;
+
+public interface AccountDAO {
+	//This interface will act as a contract for all of the Data Access Objects implementation classes.
+	//CollectionDAO, FileDAO, PostgresDAO
+	
+	// Create
+	List<Account> getAccounts(int p);
+	
+	// Read
+	
+	// Update
+	
+	// Delete
+}

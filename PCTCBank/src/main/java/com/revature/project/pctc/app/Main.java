@@ -35,14 +35,12 @@ public class Main {
 			//This deletes a specific client based on their id in the database.
 			//Returns 404 if no client exists.
 			app.delete("/clients/{id}", ClientController.deleteClient);
-		
-		/* Incomplete */
-	
+			
 			//Get all of the accounts for a specific client.
 			//returns a 404 if the client does not exist.
 			//http://localhost:8080/clients/1/accounts
 			app.get("/clients/{id}/accounts", AccountController.getAccounts);
-			
+
 			//Adds an account for a specific client.
 			// http://localhost:8080/clients/1/accounts
 			app.post("/clients/{id}/accounts", AccountController.addAccount);
@@ -54,7 +52,10 @@ public class Main {
 			
 			//This updates a specific account based on their id in the database.
 			//http://localhost:8080/accounts/1
+			//LITERALLY DOES NOT RETURN THE 404 EXCEPTION
 			app.put("/accounts/{id}", AccountController.updateAccount);
+		
+		/* Incomplete */
 			
 			//"Greater than, less than": filter through account balances through two parameters.
 			app.get("/accounts", AccountController.accountFilter);
