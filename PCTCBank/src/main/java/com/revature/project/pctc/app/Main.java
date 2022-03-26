@@ -29,6 +29,7 @@ public class Main {
 			//This updates a specific client based on their id in the database.
 			//Returns 404 if no client exists.
 			//http://localhost:8080/clients/1
+			//LITERALLY DOESN'T RETURN THE 404 EXCEPTION
 			app.put("/clients/{id}", ClientController.updateClient);
 			
 			//This deletes a specific client based on their id in the database.
