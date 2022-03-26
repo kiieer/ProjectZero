@@ -26,12 +26,6 @@ public class Main {
 			//http://localhost:8080/clients/1
 			app.get("/clients/{id}", ClientController.getClientById);
 			
-			//This updates a specific client based on their id in the database.
-			//Returns 404 if no client exists.
-			//http://localhost:8080/clients/1
-			//LITERALLY DOESN'T RETURN THE 404 EXCEPTION
-			app.put("/clients/{id}", ClientController.updateClient);
-			
 			//This deletes a specific client based on their id in the database.
 			//Returns 404 if no client exists.
 			app.delete("/clients/{id}", ClientController.deleteClient);
@@ -50,26 +44,34 @@ public class Main {
 			//http://localhost:8080/accounts/1
 			app.get("/accounts/{id}", AccountController.getAccountById);
 			
+			//"Greater than, less than": filter through account balances through two parameters.
+			app.get("/accounts", AccountController.accountFilter);
+		
+		/* HAS DAO, BUT EXCEPTIONS ARE NOT WORKING. */
+			//This updates a specific client based on their id in the database.
+			//Returns 404 if no client exists.
+			//http://localhost:8080/clients/1
+			//LITERALLY DOESN'T RETURN THE 404 EXCEPTION
+			app.put("/clients/{id}", ClientController.updateClient);
+			
 			//This updates a specific account based on their id in the database.
 			//http://localhost:8080/accounts/1
 			//LITERALLY DOES NOT RETURN THE 404 EXCEPTION
 			app.put("/accounts/{id}", AccountController.updateAccount);
-		
-		/* Incomplete */
 			
-			//"Greater than, less than": filter through account balances through two parameters.
-			app.get("/accounts", AccountController.accountFilter);
-	
 			//This deletes a specific account based on their id in the database.
 			//http://localhost:8080/accounts/1
+			//DOES NOT RETURN A 404 EXCEPTION EITHER.
 			app.delete("/accounts/{id}", AccountController.deleteAccount);
 			
 			//Deposit an amount into an existing account in our database.
 			//http://localhost:8080/accounts/1/deposit
+			// DOES NOT RETURN A 404 EXCEPTION EITHER.
 			app.patch("/accounts/{id}/deposit", AccountController.depositIntoAccount);
 			
 			//Withdraw an amount from an existing account in our database.
 			//http://localhost:8080/accounts/1/withdraw
+			//EXCEPTIONS DONT WORK PROPERLY.
 			app.patch("/accounts/{id}/withdraw", AccountController.withdrawFromAccount);
 
 	}

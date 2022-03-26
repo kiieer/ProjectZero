@@ -1,0 +1,129 @@
+package com.revature.project.pctc.handlers;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+import com.revature.project.pctc.dao.AccountDAO;
+import com.revature.project.pctc.dao.AccountPostgresDAO;
+import com.revature.project.pctc.structures.*;
+import com.revature.project.pctc.utilities.ConnUtil;
+import io.javalin.http.Handler;
+
+public class AccountController {
+	static AccountDAO dao = new AccountPostgresDAO();
+	
+	//Gets all accounts.
+	public static Handler getAccounts = ctx -> {
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		List<Account>  aList = dao.getAccounts(p);
+		if(aList.size() == 0) {
+			ctx.status(404);
+			
+		} else {
+			ctx.json(aList);
+			ctx.status(200);
+		}
+	};
+
+	//Adds an account.
+	public static Handler addAccount = ctx -> {
+		int cId = Integer.parseInt(ctx.pathParam("id"));
+		Account a = ctx.bodyAsClass(Account.class);
+		if (dao.addAccount(cId, a)) {
+			ctx.status(201);
+		} else {
+			ctx.status(404);
+		}
+	};
+	 
+	//Filter accounts by two balance variables.
+	public static Handler accountFilter = ctx -> {
+		int less = Integer.parseInt(ctx.queryParam("less"));
+		int more = Integer.parseInt(ctx.queryParam("more"));
+		List<Account>  aList = dao.accountFilter(less, more);
+		if(aList.size() == 0) {
+			ctx.status(404);
+			
+		} else {
+			ctx.json(aList);
+			ctx.status(200);
+		}
+	};
+	
+	//get account by ID
+	public static Handler getAccountById = ctx -> {
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		List<Account> aList = dao.getAccountById(p);
+		if(aList.size() == 0) {
+			ctx.status(404);
+			
+		}
+		ctx.json(aList);
+	};
+	
+	//This updates the acc number of a bank account with a specific ID in my database.
+	public static Handler updateAccount = ctx -> {
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		Account a = ctx.bodyAsClass(Account.class);
+		if (dao.updateAccount(p, a)) {
+			ctx.status(200);
+		} else {
+			ctx.status(404);
+		}
+		
+	};
+	 
+	//This deletes an account in my database.
+	public static Handler deleteAccount = ctx ->{
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		if (dao.deleteAccount(p)) {
+			ctx.status(205);
+		} else {
+			ctx.status(404);
+		}
+	};
+	
+	// Deposit an amount into an existing account.
+	public static Handler depositIntoAccount = ctx ->{
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		Account deposit = ctx.bodyAsClass(Account.class);
+		
+		if (dao.depositIntoAccount(p, deposit)) {
+			ctx.status(200);
+		} else {
+			ctx.status(404);
+		}
+		
+	};
+	
+	//Withdraw from an amount from an existing account.
+	public static Handler withdrawFromAccount = ctx ->{
+		String getBalance = "select account_balance from account where id = ?";
+		String updateBalance = "update account set account_balance= ? where id = ?";
+		int p = Integer.parseInt(ctx.pathParam("id"));
+		Account withdraw = ctx.bodyAsClass(Account.class);
+		Connection conn = ConnUtil.createConnection();
+		PreparedStatement ptsmt = conn.prepareStatement(getBalance);
+		ptsmt.setInt(1, p);
+		ResultSet rs = ptsmt.executeQuery();
+		int newBal;
+		while (rs.next()) {
+			int currentBal = rs.getInt("account_balance");
+			newBal = currentBal - withdraw.getBal();
+			if (newBal <= 0) {
+				ctx.status(422);
+			} else {
+			ptsmt = conn.prepareStatement(updateBalance);
+			ptsmt.setInt(1, newBal);
+			ptsmt.setInt(2, p);
+			ptsmt.execute();
+			ctx.status(200);
+			}
+		}
+		rs.close();
+		ptsmt.close();
+	};
+
+}

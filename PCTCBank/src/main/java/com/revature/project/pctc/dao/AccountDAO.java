@@ -16,7 +16,15 @@ public interface AccountDAO {
 	
 	List<Account> getAccountById(int p);
 	
+	List<Account> accountFilter(int less, int more);
+	
 	// Update
 	boolean updateAccount(int p, Account a);
+	
+	boolean depositIntoAccount(int p, Account deposit);
+	
+	boolean withdrawFromAccount(int p, Account withdraw);
+	
 	// Delete
+	boolean deleteAccount(int p);
 }

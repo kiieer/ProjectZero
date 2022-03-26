@@ -1,15 +1,10 @@
 package com.revature.project.pctc.handlers;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.project.pctc.dao.AccountDAO;
 import com.revature.project.pctc.dao.AccountPostgresDAO;
 import com.revature.project.pctc.structures.*;
-import com.revature.project.pctc.utilities.ConnUtil;
 import io.javalin.http.Handler;
 
 public class AccountController {
@@ -41,27 +36,16 @@ public class AccountController {
 	 
 	//Filter accounts by two balance variables.
 	public static Handler accountFilter = ctx -> {
-		String query = "select * from account where account_balance <? and account_balance>?";
 		int less = Integer.parseInt(ctx.queryParam("less"));
-		  int more = Integer.parseInt(ctx.queryParam("more"));
-		Connection conn = ConnUtil.createConnection();
-		PreparedStatement ptsmt = conn.prepareStatement(query);
-		ptsmt.setInt(1, less);
-		ptsmt.setInt(2, more);
-		ResultSet rs = ptsmt.executeQuery();
-		ArrayList<Account> aList = new ArrayList<Account>();
-		Account a;
-		while(rs.next()) {
-			int id = rs.getInt("id");
-			String accNum = rs.getString("account_number");
-			int bal = rs.getInt("account_balance");
-			int cId = rs.getInt("client_id");
-			a = new Account(id, accNum, bal, cId);
-			aList.add(a);
+		int more = Integer.parseInt(ctx.queryParam("more"));
+		List<Account>  aList = dao.accountFilter(less, more);
+		if(aList.size() == 0) {
+			ctx.status(404);
+			
+		} else {
+			ctx.json(aList);
+			ctx.status(200);
 		}
-		ctx.json(aList);
-		rs.close();
-		ptsmt.close();
 	};
 	
 	//get account by ID
@@ -80,7 +64,7 @@ public class AccountController {
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Account a = ctx.bodyAsClass(Account.class);
 		if (dao.updateAccount(p, a)) {
-			ctx.status(201);
+			ctx.status(200);
 		} else {
 			ctx.status(404);
 		}
@@ -90,64 +74,36 @@ public class AccountController {
 	//This deletes an account in my database.
 	public static Handler deleteAccount = ctx ->{
 		int p = Integer.parseInt(ctx.pathParam("id"));
-		Connection conn = ConnUtil.createConnection();
-		PreparedStatement ptsmt = conn.prepareStatement("delete from account where id = ?");
-		ptsmt.setInt(1, p);
-		ptsmt.execute();
-		ctx.status(205);
-		ptsmt.close();	
+		if (dao.deleteAccount(p)) {
+			ctx.status(205);
+		} else {
+			ctx.status(404);
+		}
 	};
 	
 	// Deposit an amount into an existing account.
 	public static Handler depositIntoAccount = ctx ->{
-		String getBalance = "select account_balance from account where id = ?";
-		String updateBalance = "update account set account_balance= ? where id = ?";
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Account deposit = ctx.bodyAsClass(Account.class);
-		Connection conn = ConnUtil.createConnection();
-		PreparedStatement ptsmt = conn.prepareStatement(getBalance);
-		ptsmt.setInt(1, p);
-		ResultSet rs = ptsmt.executeQuery();
-		int newBal;
-		while (rs.next()) {
-			int currentBal = rs.getInt("account_balance");
-			newBal = currentBal + deposit.getBal();
-			ptsmt = conn.prepareStatement(updateBalance);
-			ptsmt.setInt(1, newBal);
-			ptsmt.setInt(2, p);
-			ptsmt.execute();
+		
+		if (dao.depositIntoAccount(p, deposit)) {
 			ctx.status(200);
+		} else {
+			ctx.status(404);
 		}
-		rs.close();
-		ptsmt.close();
+		
 	};
 	
 	//Withdraw from an amount from an existing account.
 	public static Handler withdrawFromAccount = ctx ->{
-		String getBalance = "select account_balance from account where id = ?";
-		String updateBalance = "update account set account_balance= ? where id = ?";
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Account withdraw = ctx.bodyAsClass(Account.class);
-		Connection conn = ConnUtil.createConnection();
-		PreparedStatement ptsmt = conn.prepareStatement(getBalance);
-		ptsmt.setInt(1, p);
-		ResultSet rs = ptsmt.executeQuery();
-		int newBal;
-		while (rs.next()) {
-			int currentBal = rs.getInt("account_balance");
-			newBal = currentBal - withdraw.getBal();
-			if (newBal <= 0) {
-				ctx.status(422);
-			} else {
-			ptsmt = conn.prepareStatement(updateBalance);
-			ptsmt.setInt(1, newBal);
-			ptsmt.setInt(2, p);
-			ptsmt.execute();
+		
+		if (dao.withdrawFromAccount(p, withdraw)) {
 			ctx.status(200);
-			}
+		} else {
+			ctx.status(404);
 		}
-		rs.close();
-		ptsmt.close();
 	};
 
 }
