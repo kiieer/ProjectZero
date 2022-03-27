@@ -81,7 +81,7 @@ public class AccountPostgresDAO implements AccountDAO {
 	}
 
 	@Override
-	public boolean updateAccount(int p, Account a) {
+	public Account updateAccount(int p, Account a) {
 		// TODO Auto-generated method stub
 		try (Connection conn = ConnUtil.createConnection();){
 		PreparedStatement ptsmt = conn.prepareStatement("update account set account_number = ? where id = ?");
@@ -89,11 +89,11 @@ public class AccountPostgresDAO implements AccountDAO {
 		ptsmt.setInt(2, p);
 		ptsmt.execute();
 		ptsmt.close();
-		return true;
+		return a;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return a;
 		}
 	}
 

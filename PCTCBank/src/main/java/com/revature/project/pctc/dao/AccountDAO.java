@@ -19,7 +19,7 @@ public interface AccountDAO {
 	List<Account> accountFilter(int less, int more);
 	
 	// Update
-	boolean updateAccount(int p, Account a);
+	Account updateAccount(int p, Account a);
 	
 	boolean depositIntoAccount(int p, Account deposit);
 	

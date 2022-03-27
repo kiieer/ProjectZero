@@ -16,8 +16,10 @@ public class ClientController {
 		Client client = ctx.bodyAsClass(Client.class);
 		
 		if (dao.addClient(client)) {
+			ctx.result("[SUCCESSFUL] Your client has been added!");
 			ctx.status(201);
 		} else {
+			ctx.result("[ERROR] There is an internal error.");
 			ctx.status(404);
 		}
 	};
@@ -34,11 +36,12 @@ public class ClientController {
 		List<Client>  cList = dao.getClientById(p);
 		
 		if(cList.size() == 0) {
+			ctx.result("[ERROR] We're sorry, the client you have specified does not exist in our database. Try again.");
 			ctx.status(404);
 			
 		} else {
 			ctx.json(cList);
-			ctx.status(201);
+			ctx.status(200);
 		}
 	};
 	
@@ -50,20 +53,29 @@ public class ClientController {
 		List <Client> cList = dao.getClientById(p);
 		if (cList.size() == 0) {
 			ctx.status(404);
+			ctx.result("[ERROR] We're sorry, the client you have specified does not exist in our database. Try again.");
 		} else {
-			Client updatedClient = dao.updateClient(client, p);
+			client = dao.updateClient(client, p);
 			ctx.status(200);
+			ctx.result("[SUCCESS] The client has been successfully updated.");
 		}
 	};
 	
 	//This deletes a client in my database.
 	public static Handler deleteClient = ctx ->{
 		int p = Integer.parseInt(ctx.pathParam("id"));
-		if (dao.deleteClient(p)) {
-			ctx.status(205);
-		} else {
+		List <Client> cList = dao.getClientById(p);
+		if (cList.size() == 0) {
 			ctx.status(404);
-		}
+			ctx.result("[ERROR] We're sorry, the client you have specified does not exist in our database. Try again.");
+		} else if (dao.deleteClient(p)) {
+				ctx.status(205);
+				ctx.result("[SUCCESS] The client has been successfully deleted.");
+
+			} else {
+				ctx.status(404);
+				ctx.result("[ERROR] There is an internal error.");
+			}
 	};
 	
 }

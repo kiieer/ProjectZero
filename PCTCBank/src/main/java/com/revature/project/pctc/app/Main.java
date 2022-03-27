@@ -48,8 +48,6 @@ public class Main {
 			//http://localhost:8080/clients/1
 			//LITERALLY DOESN'T RETURN THE 404 EXCEPTION
 			app.put("/clients/{id}", ClientController.updateClient);
-		
-		/* HAS DAO, BUT EXCEPTIONS ARE NOT WORKING. */
 			
 			//This deletes a specific client based on their id in the database.
 			//Returns 404 if no client exists.
@@ -64,6 +62,8 @@ public class Main {
 			//http://localhost:8080/accounts/1
 			//DOES NOT RETURN A 404 EXCEPTION EITHER.
 			app.delete("/accounts/{id}", AccountController.deleteAccount);
+		
+		/* HAS DAO, BUT EXCEPTIONS ARE NOT WORKING. */
 			
 			//Deposit an amount into an existing account in our database.
 			//http://localhost:8080/accounts/1/deposit
