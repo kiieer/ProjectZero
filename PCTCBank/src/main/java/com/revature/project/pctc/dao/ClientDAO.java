@@ -17,7 +17,7 @@ public interface ClientDAO {
 	List<Client> getClientById(int p);
 	
 	// UPDATE
-	boolean updateClient(Client client, int p);
+	Client updateClient(Client client, int p);
 	
 	// DELETE
 	boolean deleteClient(int p);

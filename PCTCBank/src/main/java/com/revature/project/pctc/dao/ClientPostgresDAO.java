@@ -78,7 +78,7 @@ public class ClientPostgresDAO implements ClientDAO {
 	}
 
 	@Override
-	public boolean updateClient(Client client, int p) {
+	public Client updateClient(Client client, int p) {
 		// TODO Auto-generated method stub
 		Connection conn = ConnUtil.createConnection();
 		try {
@@ -87,11 +87,11 @@ public class ClientPostgresDAO implements ClientDAO {
 			ptsmt.setInt(2, p);
 			ptsmt.execute();
 			ptsmt.close();
-			return true;
+			return client;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return client;
 		}
 	}
 

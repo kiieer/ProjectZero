@@ -47,10 +47,12 @@ public class ClientController {
 	public static Handler updateClient = ctx -> {
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Client client = ctx.bodyAsClass(Client.class);
-		if (dao.updateClient(client, p)) {
-			ctx.status(201);
-		} else {
+		List <Client> cList = dao.getClientById(p);
+		if (cList.size() == 0) {
 			ctx.status(404);
+		} else {
+			Client updatedClient = dao.updateClient(client, p);
+			ctx.status(200);
 		}
 	};
 	
