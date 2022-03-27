@@ -121,19 +121,11 @@ public class AccountController {
 	public static Handler withdrawFromAccount = ctx ->{
 		int p = Integer.parseInt(ctx.pathParam("id"));
 		Account withdraw = ctx.bodyAsClass(Account.class);
-		List <Account> aList = dao.getAccountById(p);
 		
-		if (aList.size()== 0) {
-			ctx.status(404);
-			ctx.result("[ERROR] We're sorry, the account you have specified does not exist in our database. Try again.");
+		if (dao.withdrawFromAccount(p, withdraw)) {
+			ctx.status(200);
 		} else {
-			if (dao.withdrawFromAccount(p, withdraw)) {
-				ctx.status(200);
-				ctx.result("[SUCCESS] The amount has been withdrawn from the account.");
-			} else {
-				ctx.status(422);
-				ctx.result("[ERROR] There is insufficient funds to withdraw.");
-			}
+			ctx.status(404);
 		}
 	};
 

@@ -63,13 +63,13 @@ public class Main {
 			//DOES NOT RETURN A 404 EXCEPTION EITHER.
 			app.delete("/accounts/{id}", AccountController.deleteAccount);
 		
+		/* HAS DAO, BUT EXCEPTIONS ARE NOT WORKING. */
+			
 			//Deposit an amount into an existing account in our database.
 			//http://localhost:8080/accounts/1/deposit
 			// DOES NOT RETURN A 404 EXCEPTION EITHER.
 			app.patch("/accounts/{id}/deposit", AccountController.depositIntoAccount);
 			
-		/* HAS DAO, BUT EXCEPTIONS ARE NOT WORKING. */
-
 			//Withdraw an amount from an existing account in our database.
 			//http://localhost:8080/accounts/1/withdraw
 			//EXCEPTIONS DONT WORK PROPERLY.

@@ -74,7 +74,7 @@ public class ClientController {
 
 			} else {
 				ctx.status(404);
-				ctx.result("ERROR: Internal error.");
+				ctx.result("[ERROR] There is an internal error.");
 			}
 	};
 	

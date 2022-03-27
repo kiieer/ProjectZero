@@ -129,10 +129,10 @@ public class AccountController {
 		} else {
 			if (dao.withdrawFromAccount(p, withdraw)) {
 				ctx.status(200);
-				ctx.result("[SUCCESS] The amount has been withdrawn from the account.");
+				ctx.result("[SUCCESS] The amount has been deposited into the account.");
 			} else {
-				ctx.status(422);
-				ctx.result("[ERROR] There is insufficient funds to withdraw.");
+				ctx.status(404);
+				ctx.result("[ERROR] There is an internal error.");
 			}
 		}
 	};
