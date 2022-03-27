@@ -26,6 +26,10 @@ public class Main {
 			//http://localhost:8080/clients/1
 			app.get("/clients/{id}", ClientController.getClientById);
 			
+			//This deletes a specific client based on their id in the database.
+			//Returns 404 if no client exists.
+			app.delete("/clients/{id}", ClientController.deleteClient);
+			
 			//Get all of the accounts for a specific client.
 			//returns a 404 if the client does not exist.
 			//http://localhost:8080/clients/1/accounts
@@ -50,10 +54,6 @@ public class Main {
 			app.put("/clients/{id}", ClientController.updateClient);
 		
 		/* HAS DAO, BUT EXCEPTIONS ARE NOT WORKING. */
-			
-			//This deletes a specific client based on their id in the database.
-			//Returns 404 if no client exists.
-			app.delete("/clients/{id}", ClientController.deleteClient);
 			
 			//This updates a specific account based on their id in the database.
 			//http://localhost:8080/accounts/1
