@@ -1,0 +1,34 @@
+package com.revature.test.pctc.daotests;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
+import com.revature.project.pctc.dao.ClientDAO;
+import com.revature.project.pctc.dao.ClientPostgresDAO;
+import com.revature.project.pctc.structures.Client;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class ClientDAOTest {
+	private static ClientDAO dao = new ClientPostgresDAO();
+	private static Client globalClient;
+	
+	@BeforeAll
+	// @AfterAll
+	static void DBReset() {
+		dao.deleteClient(101);
+	}
+	
+	@Test
+	@Order(1)
+	void addClientTest() {
+		Client c1 = new Client(101, "This Dude");
+		dao.addClient(c1);
+		ClientDAOTest.globalClient = c1;
+		Assertions.assertEquals(101, globalClient.getId());
+	}
+}

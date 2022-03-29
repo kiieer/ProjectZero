@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
     <fullyQualifiedTypeName name="io.javalin.Javalin"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.handlers.ClientController"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.handlers.AccountController"/>
     <fullyQualifiedTypeName name="io.javalin.http.Handler"/>
-    <fullyQualifiedTypeName name="com.revature.project.pctc.structures.Client"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.dao.ClientDAO"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.structures.Account"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.utilities.ConnUtil"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.dao.AccountPostgresDAO"/>
     <fullyQualifiedTypeName name="com.revature.project.pctc.dao.AccountDAO"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.TestMethodOrder"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.MethodOrderer"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.AfterAll"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Order"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.revature.project.pctc.structures.Client"/>
 </qualifiedTypeNameHistroy>

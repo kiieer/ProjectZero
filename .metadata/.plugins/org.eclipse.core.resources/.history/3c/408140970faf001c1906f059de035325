@@ -1,0 +1,5 @@
+package com.revature.test.pctc.daotests;
+
+@SelectClasses({com.revature.test.pctc.daotests.ClientDAOTest.class,com.revature.test.pctc.daotests.AccountDAOTest.class})
+public class AllTestSuite {
+}

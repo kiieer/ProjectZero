@@ -1,0 +1,10 @@
+package com.revature.test.pctc.daotests;
+
+import com.revature.project.pctc.dao.AccountDAO;
+import com.revature.project.pctc.dao.AccountPostgresDAO;
+import com.revature.project.pctc.structures.Account;
+
+public class AccountDAOTest {
+	private static AccountDAO dao = new AccountPostgresDAO();
+	private static Account globalAccount;
+}

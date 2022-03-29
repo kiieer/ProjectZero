@@ -1,0 +1,7 @@
+package com.revature.test.pctc.daotests;
+
+import org.junit.platform.suite.api.SelectClasses;
+
+@SelectClasses({com.revature.test.pctc.daotests.ClientDAOTest.class,com.revature.test.pctc.daotests.AccountDAOTest.class})
+public class AllTestSuite {
+}
