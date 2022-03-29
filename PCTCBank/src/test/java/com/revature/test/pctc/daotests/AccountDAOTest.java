@@ -38,10 +38,16 @@ public class AccountDAOTest {
 	@Test
 	@Order(2)
 	void getAccountTest() {
-		List<Account> testList = new ArrayList<Account>();
+		List<Account> testList = dao.getAccounts(globalAccount.getcId());
 		List<Account> emptyList = new ArrayList<Account>();
-		testList = dao.getAccounts(globalAccount.getcId());
 		Assertions.assertNotEquals(emptyList, testList);
+	}
+	
+	@Test
+	@Order(3)
+	void getAccountsById() {
+		 List<Account> accList = dao.getAccountById(globalAccount.getId());
+		 Assertions.assertEquals(1, accList.size());
 	}
 	
 }
