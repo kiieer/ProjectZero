@@ -37,6 +37,15 @@ public class AccountDAOTest {
 	
 	@Test
 	@Order(2)
+	void sadAddAccountTest() {
+		 Account a1 = new Account(1, "T357", 1337, 46);
+		 boolean value = dao.addAccount(a1.getcId(), a1);
+		 Assertions.assertEquals(false, value);
+		 
+	}
+	
+	@Test
+	@Order(3)
 	void getAccountTest() {
 		List<Account> testList = dao.getAccounts(globalAccount.getcId());
 		List<Account> emptyList = new ArrayList<Account>();
@@ -44,10 +53,50 @@ public class AccountDAOTest {
 	}
 	
 	@Test
-	@Order(3)
+	@Order(4)
 	void getAccountsById() {
 		 List<Account> accList = dao.getAccountById(globalAccount.getId());
 		 Assertions.assertEquals(1, accList.size());
+	}
+	
+	@Test
+	@Order(5)
+	void updateAccountTest() {
+		 Account a1 = new Account(101, "R00T", 1337, 46);
+		 a1 = dao.updateAccount(globalAccount.getId(), a1);
+		 List<Account> accounts = dao.getAccountById(globalAccount.getId());
+		Assertions.assertEquals(a1.toString(), accounts.get(0).toString());
+	}
+	
+	@Test
+	@Order(6)
+	void GreaterThanLessThanTest() {
+		List<Account> account = dao.accountFilter(300, 1);
+		Assertions.assertEquals(1, account.size());
+	}
+	
+	@Test
+	@Order(7)
+	void depositAccountTest() {
+		Account a1 = new Account(100);
+		boolean value = dao.depositIntoAccount(globalAccount.getId(), a1);
+		Assertions.assertEquals(true, value);
+		}
+	
+	@Test
+	@Order(8)
+	void withdrawAccountTest() {
+		Account a1 = new Account(100);
+		boolean value = dao.withdrawFromAccount(globalAccount.getId(), a1);
+		Assertions.assertEquals(true, value);
+		}
+	
+	@Test
+	@Order(9)
+	void deleteAccount() {
+		Account a1 = new Account(101, "R00T", 1337, 46);
+		dao.deleteAccount(a1.getId());
+		Assertions.assertNotEquals(a1, globalAccount);
 	}
 	
 }

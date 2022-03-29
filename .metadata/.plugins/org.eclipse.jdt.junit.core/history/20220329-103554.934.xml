@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AccountDAOTest" project="PCTCBank" tests="8" started="8" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.test.pctc.daotests.AccountDAOTest" time="2.882" displayname="AccountDAOTest" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]">
+    <testcase name="addAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.622" displayname="addAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:addAccountTest()]"/>
+    <testcase name="sadAddAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.284" displayname="sadAddAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:sadAddAccountTest()]"/>
+    <testcase name="getAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.279" displayname="getAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:getAccountTest()]"/>
+    <testcase name="getAccountsById" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.295" displayname="getAccountsById()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:getAccountsById()]"/>
+    <testcase name="updateAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.564" displayname="updateAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:updateAccountTest()]"/>
+    <testcase name="GreaterThanLessThanTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.256" displayname="GreaterThanLessThanTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:GreaterThanLessThanTest()]"/>
+    <testcase name="depositAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.29" displayname="depositAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:depositAccountTest()]"/>
+    <testcase name="withdrawAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.282" displayname="withdrawAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:withdrawAccountTest()]"/>
+  </testsuite>
+</testrun>

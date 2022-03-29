@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ClientDAOTest" project="PCTCBank" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="com.revature.test.pctc.daotests.ClientDAOTest" time="1.62" displayname="ClientDAOTest" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.ClientDAOTest]">
+    <testcase name="addClientTest" classname="com.revature.test.pctc.daotests.ClientDAOTest" time="0.246" displayname="addClientTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.ClientDAOTest]/[method:addClientTest()]"/>
+    <testcase name="getClientTest" classname="com.revature.test.pctc.daotests.ClientDAOTest" time="0.295" displayname="getClientTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.ClientDAOTest]/[method:getClientTest()]"/>
+    <testcase name="getClientByIDTest" classname="com.revature.test.pctc.daotests.ClientDAOTest" time="0.26" displayname="getClientByIDTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.ClientDAOTest]/[method:getClientByIDTest()]"/>
+    <testcase name="UpdateClientTest" classname="com.revature.test.pctc.daotests.ClientDAOTest" time="0.546" displayname="UpdateClientTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.ClientDAOTest]/[method:UpdateClientTest()]"/>
+    <testcase name="DeleteClientTest" classname="com.revature.test.pctc.daotests.ClientDAOTest" time="0.27" displayname="DeleteClientTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.ClientDAOTest]/[method:DeleteClientTest()]"/>
+  </testsuite>
+</testrun>

@@ -50,8 +50,7 @@ public class ClientDAOTest {
 	void getClientByIDTest() {
 		Client c1 = new Client(101, "This Dude");
 		List<Client> testList = dao.getClientById(c1.getId());
-		List<Client> emptyList = new ArrayList<Client>();
-		Assertions.assertNotEquals(emptyList, testList);
+		Assertions.assertEquals(1, testList.size());
 	}
 	
 	@Test

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="AccountDAOTest" project="PCTCBank" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="com.revature.test.pctc.daotests.AccountDAOTest" time="0.673" displayname="AccountDAOTest" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]">
-    <testcase name="addAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.366" displayname="addAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:addAccountTest()]"/>
-    <testcase name="getAccountTest" classname="com.revature.test.pctc.daotests.AccountDAOTest" time="0.304" displayname="getAccountTest()" uniqueid="[engine:junit-jupiter]/[class:com.revature.test.pctc.daotests.AccountDAOTest]/[method:getAccountTest()]"/>
-  </testsuite>
-</testrun>
